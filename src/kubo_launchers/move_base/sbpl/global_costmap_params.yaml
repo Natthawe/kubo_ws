@@ -1,8 +1,9 @@
-#Independent settings for the planner's costmap
 global_costmap: 
   global_frame: map
   robot_base_frame: base_link
-  update_frequency: 5.0
-  publish_frequency: 0.0
+  update_frequency: 2.5
+  publish_frequency: 2.5
+  transform_tolerance: 0.5
   static_map: true
   rolling_window: false
+  # inflation_radius: 0.5
