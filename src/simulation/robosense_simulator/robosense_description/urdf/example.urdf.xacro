@@ -2,6 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="example">
   <xacro:arg name="gpu" default="false"/>
   <xacro:property name="gpu" value="$(arg gpu)" />
+  <xacro:arg name="organize_cloud" default="false"/>
+  <xacro:property name="organize_cloud" value="$(arg organize_cloud)" />
 
   <!-- Base Footprint -->
   <link name="base_footprint" />
@@ -25,16 +27,22 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="10"/>
+      <mass value="100"/>
       <inertia ixx="3.0" ixy="0.0" ixz="0.0"
                iyy="3.0" iyz="0.0" 
                izz="3.0" />
     </inertial>
   </link>
 
-  <xacro:include filename="$(find robosense_description)/urdf/RS-16.urdf.xacro"/>
-  <xacro:RS-16 parent="base_link" name="robosense" topic="/rs_points" hz="20" samples="900" gpu="${gpu}">
-    <origin xyz="0 0 0.4" rpy="0 0 0" />
-  </xacro:RS-16>
+  <xacro:include filename="$(find robosense_description)/urdf/RS-16_F.urdf.xacro"/>
+  <xacro:RS-16-F parent="base_link" name="robosense_F" topic="/rs_points_F" hz="20" samples="900" gpu="${gpu}">
+    <origin xyz="3.165 1.345 1.25" rpy="0.0 3.14 -1.5707" />
+  </xacro:RS-16-F>
+  <!-- 5.26 1.345 1.25 -->
+  <xacro:include filename="$(find robosense_description)/urdf/RS-16_B.urdf.xacro"/>
+  <xacro:RS-16-B parent="base_link" name="robosense_B" topic="/rs_points_B" hz="20" samples="900" gpu="${gpu}">
+    <origin xyz="-3.165 -1.345 1.25" rpy="0.0 3.14 1.5707" />
+  </xacro:RS-16-B>  
+  <!-- -1.07 -1.345 1.25 -->
 
 </robot>
