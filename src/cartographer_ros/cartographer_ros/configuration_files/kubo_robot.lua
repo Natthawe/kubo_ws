@@ -51,6 +51,6 @@ TRAJECTORY_BUILDER_2D.max_range = 100.0
 -- TRAJECTORY_BUILDER.pure_localization = true
 
 -- pure_localization
-POSE_GRAPH.optimize_every_n_nodes = 1
+POSE_GRAPH.optimize_every_n_nodes = 35
 MAP_BUILDER.num_background_threads = 8
 return options
