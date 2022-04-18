@@ -129,19 +129,27 @@ ekf_se_map:
                  false, false, false, #<!-- roll/pitch/yaw velocity -->
                  false, false, false] #<!-- Acceleration -->
 
-  pose0: scan_matcher_pose
-  pose0_config: [true, true,   false,
-                 false, false,  true,
-                 false, false,   false,
-                 false,  false,  false,
-                 false,  false,  false]
+  # pose0: scan_matcher_pose
+  # pose0_config: [true, true, true,
+  #                false, false, true,
+  #                false, false, true,
+  #                false, false, true,
+  #                false, false, true]
+  # pose0_queue_size: 10
+  # pose0_nodelay: true
+  # pose0_differential: false
+  # pose0_relative: false
 
-  pose1: amcl_pose 
-  pose1_config: [true, true, false,
-                 false,  false,  true,
-                 false, false, false,
-                 false,  false,  false,
-                 false,  false,  false]
+  # pose1: amcl_pose 
+  # pose1_config: [true, true, false,
+  #                false, false, true,
+  #                false, false, false,
+  #                false, false, false,
+  #                false, false, false]
+  # pose1_queue_size: 10
+  # pose1_nodelay: true
+  # pose1_differential: true
+  # pose1_relative: false
 
   use_control: false
 

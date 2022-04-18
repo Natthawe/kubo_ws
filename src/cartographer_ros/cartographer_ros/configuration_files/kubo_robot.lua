@@ -22,6 +22,7 @@ options = {
   odom_frame = "odom",
   provide_odom_frame = true,
   publish_frame_projected_to_2d = true,
+  -- use_pose_extrapolator = true,
   use_odometry = true,
   use_nav_sat = false,
   use_landmarks = true,
@@ -41,16 +42,39 @@ options = {
   landmarks_sampling_ratio = 1.,
 }
 
+POSE_GRAPH.optimize_every_n_nodes = 0 --35
 MAP_BUILDER.use_trajectory_builder_2d = true
-
+MAP_BUILDER.num_background_threads = 8
 TRAJECTORY_BUILDER_2D.use_imu_data = false
 TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+TRAJECTORY_BUILDER_2D.min_range = 0.1
 TRAJECTORY_BUILDER_2D.max_range = 100.0
--- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 1e3
--- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 4e2
--- TRAJECTORY_BUILDER.pure_localization = true
+TRAJECTORY_BUILDER_2D.submaps.num_range_data = 35
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 1e5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.occupied_space_weight = 10
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 40
 
--- pure_localization
-POSE_GRAPH.optimize_every_n_nodes = 35
-MAP_BUILDER.num_background_threads = 8
+-- MAP_BUILDER.use_trajectory_builder_2d = true
+
+-- TRAJECTORY_BUILDER_2D.min_range = 0.1
+-- TRAJECTORY_BUILDER_2D.max_range = 100.0
+-- TRAJECTORY_BUILDER_2D.missing_data_ray_length = 3.0
+-- TRAJECTORY_BUILDER_2D.use_imu_data = false
+-- TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+
+-- POSE_GRAPH.constraint_builder.min_score = 0.65
+-- POSE_GRAPH.constraint_builder.global_localization_min_score = 0.7
+
+-- POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 1e5
+-- POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 1e5
+-- POSE_GRAPH.optimization_problem.odometry_translation_weight = 1e5
+-- POSE_GRAPH.optimization_problem.odometry_rotation_weight = 1e5
+-- POSE_GRAPH.optimization_problem.huber_scale = 1e3
+
+-- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.occupied_space_weight = 10
+-- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 40
+
+-- TRAJECTORY_BUILDER_2D.submaps.num_range_data = 120
+-- TRAJECTORY_BUILDER_2D.motion_filter.max_distance_meters = 0.1
+-- TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.2)
 return options

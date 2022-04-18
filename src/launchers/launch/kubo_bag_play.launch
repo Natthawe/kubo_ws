@@ -7,7 +7,7 @@
         pkg="rosbag" 
         type="play" 
         name="player" 
-        args="-k -s 130 --clock $(find launchers)/robot/kubo/bag/FilteredBag.bag"
+        args="-k -s 130 --clock $(find launchers)/robot/kubo/bag/Filter.bag"
         output="screen"
     />
 
@@ -30,7 +30,7 @@
 
 
     <!-- imu tools -->
-    <include file="$(find launchers)/robot/kubo/imu_tool/imu_filter_madgwick.xml"/>
+    <!-- <include file="$(find launchers)/robot/kubo/imu_tool/imu_filter_madgwick.xml"/> -->
    
 
 
@@ -41,7 +41,7 @@
     <include file="$(find cartographer_ros)/launch/kubo_robot.launch"/>
 
     <!-- amcl -->
-    <!-- <include file="$(find launchers)/robot/kubo/amcl/amcl_diff.xml"/> -->
+    <include file="$(find launchers)/robot/kubo/amcl/amcl_diff.xml"/>
 
     <!--launch rviz-->
     <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(find launchers)/rviz/config_bag_sensor.rviz"/>
